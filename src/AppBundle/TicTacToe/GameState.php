@@ -32,29 +32,28 @@ class GameState
      */
     public function isOver(){
 
-        //проверить ряды
+        $values = [];
+
+        //ряды
         for($i = 0; $i < 9; $i += 3){
-            $values = [$this->board[$i],$this->board[$i+1],$this->board[$i+2]];
-            if( array_unique($values) === [$this->turn]){
-                return true;
-            }
+            $values[] = [$this->board[$i],$this->board[$i+1],$this->board[$i+2]];
         }
 
-        //проверить столбцы
-
+        //столбцы
         for($i = 0; $i < 3; $i++){
-            $values = [$this->board[$i],$this->board[$i+3],$this->board[$i+6]];
-            if( array_unique($values) === [$this->turn]){
-                return true;
-            }
-        }
-        //проверить диагонали
-        if($this->board[0] == $this->turn && $this->board[0] == $this->board[4] && $this->board[4] == $this->board[8]){
-            return true;
+            $values[] = [$this->board[$i],$this->board[$i+3],$this->board[$i+6]];
         }
 
-        if($this->board[2] == $this->turn && $this->board[2] == $this->board[4] && $this->board[4] == $this->board[6]){
-            return true;
+        //диагонали
+        $values[] = [$this->board[0], $this->board[4], $this->board[8]];
+        $values[] = [$this->board[2], $this->board[4], $this->board[6]];
+
+        //проверка наличия заполненных строк
+        foreach($values as $value){
+            if( array_unique($value) === [$this->turn]){
+                dump(array_unique($value));
+                return true;
+            }
         }
 
         return false;

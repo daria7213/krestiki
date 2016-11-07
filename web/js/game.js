@@ -34,11 +34,18 @@ $(function(){
                     $(this).text(value);
                 });
                 if(result["winner"]){
-                    window.location.replace(Routing.generate('over', {winner: result["winner"]}));
+                    var time = result["winner"] == "o" ? 1000 : 200;
+                    setTimeout(function(){
+                        window.location.replace(Routing.generate('over', {winner: result["winner"]}));
+                        $(".field").each(function(){
+                            $(this).removeClass("disabled");
+                        });
+                    }, time);
+                } else {
+                    $(".field").each(function(){
+                        $(this).removeClass("disabled");
+                    });
                 }
-                $(".field").each(function(){
-                    $(this).removeClass("disabled");
-                });
             }
         })
     });
