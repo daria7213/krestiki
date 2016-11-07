@@ -22,12 +22,12 @@ class GameService
      *
      * @var string
      */
-    private $status;
+    private $winner;
 
     public function __construct() {
         $this->aiPlayer = new AIPlayer();
         $this->gameState = new GameState();
-        $this->status = "running";
+        $this->winner = "none";
     }
 
     /**
@@ -63,9 +63,9 @@ class GameService
     /**
      * @return string
      */
-    public function getStatus()
+    public function getWinner()
     {
-        return $this->status;
+        return $this->winner;
     }
 
     /**
@@ -74,9 +74,9 @@ class GameService
     public function updateStatus(){
 
         if($this->gameState->isOver()){
-            $this->status = $this->gameState->getTurn();
+            $this->winner = $this->gameState->getTurn();
         } elseif(!$this->gameState->getEmptyFields()){
-            $this->status = "draw";
+            $this->winner = "draw";
         }
     }
 }

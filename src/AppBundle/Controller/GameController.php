@@ -16,9 +16,7 @@ class GameController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render('game/start.html.twig');
-
     }
 
     /**
@@ -28,16 +26,19 @@ class GameController extends Controller
 
         $game = $this->get("tictactoe");
 
+        //обработка ajax запроса
         if($request->isXmlHttpRequest()){
             $game->playerMove($request->request->get("board"));
-            if($game->getStatus() == "running"){
+            if($game->getWinner() == "none"){
                 $game->aiMove();
-                if($game->getStatus() == "running"){
+                if($game->getWinner() == "none"){
+                    //возвращает текущее состояние поля, если игра продолжается
                     return new JsonResponse(["board" => $game->getState()]);
                 }
             }
 
-            return new JsonResponse(["winner" => $game->getStatus(), "board" => $game->getState()]);
+            //возвращает победителя игры и конечное состояние поля
+            return new JsonResponse(["winner" => $game->getWinner(), "board" => $game->getState()]);
         }
 
         return $this->render('game/play.html.twig', ["board" => $game->getState()]);
@@ -48,8 +49,6 @@ class GameController extends Controller
      * @Route("/over/{winner}", options={"expose"=true}, name="over")
      */
     public function overAction($winner){
-        $game = $this->get("tictactoe");
-        $game->playerMove(['x','e','e','e','e','e','e','e','e']);
         return $this->render('game/over.html.twig', ["winner" => $winner]);
     }
 }
