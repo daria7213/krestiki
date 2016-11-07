@@ -1,18 +1,23 @@
 $(function(){
     var url = Routing.generate('play');
 
-    $(".field").click(function(){
+    $(".board").on("click", ".field:not(.disabled)", function(){
         if($(this).hasClass("occupied")) return;
 
         $(this)
             .text("x")
             .addClass("occupied");
 
+        $(".field").each(function(){
+           $(this).addClass("disabled");
+        });
+
         var board = [];
         $(".field").each(function(){
             var value = $(this).text().trim();
             board.push(value == "" ? 'e' : value);
         });
+
         $.ajax({
             url: url,
             method: "POST",
@@ -29,11 +34,11 @@ $(function(){
                     $(this).text(value);
                 });
                 if(result["winner"]){
-                    setTimeout(function(){
-                        window.location.replace(Routing.generate('over', {winner: result["winner"]}));
-                    }, 500);
-
+                    window.location.replace(Routing.generate('over', {winner: result["winner"]}));
                 }
+                $(".field").each(function(){
+                    $(this).removeClass("disabled");
+                });
             }
         })
     });
