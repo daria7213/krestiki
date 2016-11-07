@@ -60,7 +60,7 @@ class AIPlayer
         //если выигрышной строки нет проверка на наличие 2 "х" в каждой строке
         foreach($values as $value){
             $count = array_count_values($value);
-            if((isset($count["x"]) && $count["x"] == 2) || (isset($count["o"]) && $count["o"] == 2)){
+            if(isset($count["x"]) && $count["x"] == 2){
                 $index = array_search("e", $value);
                 if($index !== false) return $index;
             }
