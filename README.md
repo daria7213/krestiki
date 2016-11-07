@@ -1,4 +1,6 @@
 krestiki
 ========
 
-A Symfony project created on November 3, 2016, 7:00 pm.
+Крестики-нолики на Symfony 3.
+
+https://mysterious-dusk-86237.herokuapp.com
