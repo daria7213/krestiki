@@ -1,0 +1,59 @@
+
+body {
+    background-color: rgba(200, 212, 214, 0.5);
+}
+
+.wrapper {
+    width: 960px;
+    margin: 40px auto;
+    background-color: rgb(254, 253, 255);
+    text-align: center;
+}
+
+.winner {
+    padding-top: 40px;
+    font-size: 40px;
+    color: #89b7c2;
+}
+.board {
+    width: 420px;
+    height: 420px;
+    margin: 40px auto;
+    padding-top: 60px;
+    padding-bottom: 50px;
+}
+
+.field {
+    color: #89b7c2;
+    width: 140px;
+    height: 140px;
+    float: left;
+    font-size: 60px;
+    line-height: 140px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    cursor: pointer;
+    box-shadow:
+            2px 0 0 0 #888,
+            0 2px 0 0 #888,
+            2px 2px 0 0 #888,
+            2px 0 0 0 #888 inset,
+            0 2px 0 0 #888 inset;
+}
+
+.field:hover {
+    background-color: #89b7c2;
+    color: white;
+}
+
+.button {
+    background-color: #89b7c2;
+    color: white;
+    padding: 30px 30px;
+    text-decoration: none;
+    font-size: 30px;
+    display: inline-block;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}

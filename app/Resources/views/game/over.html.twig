@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    Крестики-нолики
+{% endblock %}
+{% block body %}
+    <div class="wrapper">
+        <div class="winner">
+            {% if winner == "draw" %}
+                <p>Ничья!</p>
+            {% elseif winner == "o" %}
+                <p>Победил компьютер!</p>
+            {% else %}
+                <p>Вы победили!</p>
+            {% endif %}
+        </div>
+        <a href="{{ path("play") }}" class="button start-button">Начать заново</a>
+    </div>
+
+
+{% endblock %}
