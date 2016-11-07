@@ -5,6 +5,8 @@ namespace AppBundle\TicTacToe;
 class AIPlayer
 {
     /**
+     * Делает ход и изменяет состояние поля
+     *
      * @param GameState $state
      */
     public function makeMove($state){
@@ -12,7 +14,7 @@ class AIPlayer
         $board = $state->getBoard();
         $moveIndex = $this->findBestMove($board);
 
-        //если блокировать нечего, выбирает случайное пустое поле
+        //если блокировать нечего, выбирает случайную пустую клетку
         if($moveIndex === null){
             $emptyFields = $state->getEmptyFields();
             $moveIndex = $emptyFields[array_rand($emptyFields,1)];
@@ -23,7 +25,8 @@ class AIPlayer
     }
 
     /**
-     * Возвращает индекс поля, блокируещего 2 в ряд
+     * Возвращает индекс наиболее подходящей клетки
+     *
      * @param $board
      * @return mixed|null
      */

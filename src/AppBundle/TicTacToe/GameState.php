@@ -6,7 +6,7 @@ namespace AppBundle\TicTacToe;
 class GameState
 {
     /**
-     * Массив игровых полей
+     * Массив игровых клеток
      *
      * @var array
      */
@@ -59,7 +59,7 @@ class GameState
     }
 
     /**
-     * Возвращяет индексы пустых полей
+     * Возвращяет индексы пустых клеток
      *
      * @return array
      */

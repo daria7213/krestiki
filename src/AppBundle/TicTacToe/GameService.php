@@ -37,7 +37,7 @@ class GameService
      */
     public function playerMove($board){
         $this->gameState->setBoard($board);
-        $this->updateStatus();
+        $this->updateWinner();
         $this->gameState->changeTurn();
     }
 
@@ -46,13 +46,12 @@ class GameService
      */
     public function aiMove(){
         $this->aiPlayer->makeMove($this->gameState);
-
-        $this->updateStatus();
+        $this->updateWinner();
         $this->gameState->changeTurn();
     }
 
     /**
-     * Возвращает массив полей
+     * Возвращает массив клеток
      *
      * @return array
      */
@@ -61,6 +60,7 @@ class GameService
     }
 
     /**
+     * Возвращает результат игры
      * @return string
      */
     public function getWinner()
@@ -71,7 +71,7 @@ class GameService
     /**
      *  Изменяет результат игры, если есть выигрыш или ничья
      */
-    public function updateStatus(){
+    public function updateWinner(){
 
         if($this->gameState->isOver()){
             $this->winner = $this->gameState->getTurn();
