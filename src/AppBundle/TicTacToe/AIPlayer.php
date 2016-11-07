@@ -45,10 +45,19 @@ class AIPlayer
         $values[] = [0 => $board[0], 4 => $board[4], 8 => $board[8]];
         $values[] = [2 => $board[2], 4 => $board[4], 6 => $board[6]];
 
-        //проверка на наличие 2 "х" в каждой строке
+        //проверка на наличие выигрышной строки
         foreach($values as $value){
             $count = array_count_values($value);
-            if(isset($count["x"]) && $count["x"] == 2){
+            if(isset($count["o"]) && $count["o"] == 2){
+                $index = array_search("e", $value);
+                if($index !== false) return $index;
+            }
+        }
+
+        //если выигрышной строки нет проверка на наличие 2 "х" в каждой строке
+        foreach($values as $value){
+            $count = array_count_values($value);
+            if((isset($count["x"]) && $count["x"] == 2) || (isset($count["o"]) && $count["o"] == 2)){
                 $index = array_search("e", $value);
                 if($index !== false) return $index;
             }

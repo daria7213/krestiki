@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,6 +12,8 @@ class GameController extends Controller
 {
     /**
      * @Route("/", options={"expose"=true}, name="start")
+     * @param Request $request
+     * @return Response
      */
     public function indexAction(Request $request)
     {
@@ -21,6 +22,8 @@ class GameController extends Controller
 
     /**
      * @Route("/play", options={"expose"=true}, name="play")
+     * @param Request $request
+     * @return JsonResponse|Response
      */
     public function gameAction(Request $request){
 
@@ -45,8 +48,9 @@ class GameController extends Controller
     }
 
     /**
-     *
      * @Route("/over/{winner}", options={"expose"=true}, name="over")
+     * @param $winner
+     * @return Response
      */
     public function overAction($winner){
         return $this->render('game/over.html.twig', ["winner" => $winner]);
