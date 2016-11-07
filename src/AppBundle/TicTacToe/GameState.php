@@ -51,7 +51,6 @@ class GameState
         //проверка наличия заполненных строк
         foreach($values as $value){
             if( array_unique($value) === [$this->turn]){
-                dump(array_unique($value));
                 return true;
             }
         }
